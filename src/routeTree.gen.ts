@@ -10,33 +10,53 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as KutubxonaRouteImport } from './routes/kutubxona'
+import { Route as ShifokorlarRouteImport } from './routes/shifokorlar'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const KutubxonaRoute = KutubxonaRouteImport.update({
+  id: '/kutubxona',
+  path: '/kutubxona',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ShifokorlarRoute = ShifokorlarRouteImport.update({
+  id: '/shifokorlar',
+  path: '/shifokorlar',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/kutubxona': typeof KutubxonaRoute
+  '/shifokorlar': typeof ShifokorlarRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/kutubxona': typeof KutubxonaRoute
+  '/shifokorlar': typeof ShifokorlarRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/kutubxona': typeof KutubxonaRoute
+  '/shifokorlar': typeof ShifokorlarRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/kutubxona' | '/shifokorlar'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/kutubxona' | '/shifokorlar'
+  id: '__root__' | '/' | '/kutubxona' | '/shifokorlar'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  KutubxonaRoute: typeof KutubxonaRoute
+  ShifokorlarRoute: typeof ShifokorlarRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +68,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/kutubxona': {
+      id: '/kutubxona'
+      path: '/kutubxona'
+      fullPath: '/kutubxona'
+      preLoaderRoute: typeof KutubxonaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/shifokorlar': {
+      id: '/shifokorlar'
+      path: '/shifokorlar'
+      fullPath: '/shifokorlar'
+      preLoaderRoute: typeof ShifokorlarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  KutubxonaRoute: KutubxonaRoute,
+  ShifokorlarRoute: ShifokorlarRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
