@@ -10,8 +10,11 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as KirishRouteImport } from './routes/kirish'
 import { Route as KutubxonaRouteImport } from './routes/kutubxona'
+import { Route as ProfilRouteImport } from './routes/profil'
 import { Route as ShifokorlarRouteImport } from './routes/shifokorlar'
+import { Route as TarixRouteImport } from './routes/tarix'
 import { Route as TashxisRouteImport } from './routes/tashxis'
 
 const IndexRoute = IndexRouteImport.update({
@@ -19,14 +22,29 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const KirishRoute = KirishRouteImport.update({
+  id: '/kirish',
+  path: '/kirish',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const KutubxonaRoute = KutubxonaRouteImport.update({
   id: '/kutubxona',
   path: '/kutubxona',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProfilRoute = ProfilRouteImport.update({
+  id: '/profil',
+  path: '/profil',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ShifokorlarRoute = ShifokorlarRouteImport.update({
   id: '/shifokorlar',
   path: '/shifokorlar',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TarixRoute = TarixRouteImport.update({
+  id: '/tarix',
+  path: '/tarix',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TashxisRoute = TashxisRouteImport.update({
@@ -37,35 +55,69 @@ const TashxisRoute = TashxisRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/kirish': typeof KirishRoute
   '/kutubxona': typeof KutubxonaRoute
+  '/profil': typeof ProfilRoute
   '/shifokorlar': typeof ShifokorlarRoute
+  '/tarix': typeof TarixRoute
   '/tashxis': typeof TashxisRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/kirish': typeof KirishRoute
   '/kutubxona': typeof KutubxonaRoute
+  '/profil': typeof ProfilRoute
   '/shifokorlar': typeof ShifokorlarRoute
+  '/tarix': typeof TarixRoute
   '/tashxis': typeof TashxisRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/kirish': typeof KirishRoute
   '/kutubxona': typeof KutubxonaRoute
+  '/profil': typeof ProfilRoute
   '/shifokorlar': typeof ShifokorlarRoute
+  '/tarix': typeof TarixRoute
   '/tashxis': typeof TashxisRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/kutubxona' | '/shifokorlar' | '/tashxis'
+  fullPaths:
+    | '/'
+    | '/kirish'
+    | '/kutubxona'
+    | '/profil'
+    | '/shifokorlar'
+    | '/tarix'
+    | '/tashxis'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/kutubxona' | '/shifokorlar' | '/tashxis'
-  id: '__root__' | '/' | '/kutubxona' | '/shifokorlar' | '/tashxis'
+  to:
+    | '/'
+    | '/kirish'
+    | '/kutubxona'
+    | '/profil'
+    | '/shifokorlar'
+    | '/tarix'
+    | '/tashxis'
+  id:
+    | '__root__'
+    | '/'
+    | '/kirish'
+    | '/kutubxona'
+    | '/profil'
+    | '/shifokorlar'
+    | '/tarix'
+    | '/tashxis'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  KirishRoute: typeof KirishRoute
   KutubxonaRoute: typeof KutubxonaRoute
+  ProfilRoute: typeof ProfilRoute
   ShifokorlarRoute: typeof ShifokorlarRoute
+  TarixRoute: typeof TarixRoute
   TashxisRoute: typeof TashxisRoute
 }
 
@@ -78,6 +130,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/kirish': {
+      id: '/kirish'
+      path: '/kirish'
+      fullPath: '/kirish'
+      preLoaderRoute: typeof KirishRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/kutubxona': {
       id: '/kutubxona'
       path: '/kutubxona'
@@ -85,11 +144,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof KutubxonaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/profil': {
+      id: '/profil'
+      path: '/profil'
+      fullPath: '/profil'
+      preLoaderRoute: typeof ProfilRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/shifokorlar': {
       id: '/shifokorlar'
       path: '/shifokorlar'
       fullPath: '/shifokorlar'
       preLoaderRoute: typeof ShifokorlarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tarix': {
+      id: '/tarix'
+      path: '/tarix'
+      fullPath: '/tarix'
+      preLoaderRoute: typeof TarixRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/tashxis': {
@@ -104,8 +177,11 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  KirishRoute: KirishRoute,
   KutubxonaRoute: KutubxonaRoute,
+  ProfilRoute: ProfilRoute,
   ShifokorlarRoute: ShifokorlarRoute,
+  TarixRoute: TarixRoute,
   TashxisRoute: TashxisRoute,
 }
 export const routeTree = rootRouteImport
