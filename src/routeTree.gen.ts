@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as KutubxonaRouteImport } from './routes/kutubxona'
 import { Route as ShifokorlarRouteImport } from './routes/shifokorlar'
+import { Route as TashxisRouteImport } from './routes/tashxis'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -28,35 +29,44 @@ const ShifokorlarRoute = ShifokorlarRouteImport.update({
   path: '/shifokorlar',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TashxisRoute = TashxisRouteImport.update({
+  id: '/tashxis',
+  path: '/tashxis',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/kutubxona': typeof KutubxonaRoute
   '/shifokorlar': typeof ShifokorlarRoute
+  '/tashxis': typeof TashxisRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/kutubxona': typeof KutubxonaRoute
   '/shifokorlar': typeof ShifokorlarRoute
+  '/tashxis': typeof TashxisRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/kutubxona': typeof KutubxonaRoute
   '/shifokorlar': typeof ShifokorlarRoute
+  '/tashxis': typeof TashxisRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/kutubxona' | '/shifokorlar'
+  fullPaths: '/' | '/kutubxona' | '/shifokorlar' | '/tashxis'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/kutubxona' | '/shifokorlar'
-  id: '__root__' | '/' | '/kutubxona' | '/shifokorlar'
+  to: '/' | '/kutubxona' | '/shifokorlar' | '/tashxis'
+  id: '__root__' | '/' | '/kutubxona' | '/shifokorlar' | '/tashxis'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   KutubxonaRoute: typeof KutubxonaRoute
   ShifokorlarRoute: typeof ShifokorlarRoute
+  TashxisRoute: typeof TashxisRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -82,6 +92,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ShifokorlarRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/tashxis': {
+      id: '/tashxis'
+      path: '/tashxis'
+      fullPath: '/tashxis'
+      preLoaderRoute: typeof TashxisRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -89,6 +106,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   KutubxonaRoute: KutubxonaRoute,
   ShifokorlarRoute: ShifokorlarRoute,
+  TashxisRoute: TashxisRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
